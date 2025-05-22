@@ -77,6 +77,32 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Header element not found in DOM.');
     }
     
+    // Load newsletter component
+    const newsletterElement = document.querySelector('.newsletter-component');
+    if (newsletterElement) {
+        const isInPagesDirectory = window.location.pathname.includes('/pages/');
+        console.log('Newsletter loading: isInPagesDirectory =', isInPagesDirectory);
+        
+        const newsletterPath = isInPagesDirectory 
+            ? '../components/newsletter.html' 
+            : 'components/newsletter.html';
+        console.log('Newsletter loading: path =', newsletterPath);
+        
+        fetch(newsletterPath)
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for ${newsletterPath}`);
+                return response.text();
+            })
+            .then(data => {
+                newsletterElement.innerHTML = data;
+                console.log('Newsletter HTML loaded.');
+                
+                // Newsletter component includes its own JavaScript initialization
+                // The script tag in the component will auto-execute
+            })
+            .catch(error => console.warn('Could not load newsletter:', error));
+    }
+    
     // Load footer component
     const footerElement = document.querySelector('footer');
     if (footerElement) {

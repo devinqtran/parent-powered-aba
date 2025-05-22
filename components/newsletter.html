@@ -1,0 +1,342 @@
+<!-- ================ NEWSLETTER COMPONENT ================ -->
+<section class="newsletter">
+    <div class="container">
+        <h2>Stay Connected & Informed</h2>
+        <p>Join our community of empowered parents! Get weekly tips, success stories, and expert ABA strategies delivered straight to your inbox.</p>
+        
+        <form class="newsletter-form" id="newsletterForm">
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    id="firstName" 
+                    placeholder="Your First Name" 
+                    required
+                >
+                <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="your.email@example.com" 
+                    required
+                >
+                <button type="submit" class="newsletter-btn" id="submitBtn">
+                    Subscribe Now
+                </button>
+            </div>
+        </form>
+        
+        <div id="messageContainer"></div>
+
+        <div class="newsletter-benefits">
+            <div class="benefit-item">
+                <div class="benefit-icon">📧</div>
+                <div class="benefit-text">
+                    <h4>Weekly Tips</h4>
+                    <p>Practical ABA strategies you can implement at home immediately</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🎯</div>
+                <div class="benefit-text">
+                    <h4>Success Stories</h4>
+                    <p>Real experiences from families who've seen amazing progress</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🎓</div>
+                <div class="benefit-text">
+                    <h4>Expert Insights</h4>
+                    <p>Professional guidance from certified ABA specialists</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Newsletter Component Styles */
+    .newsletter {
+        background: linear-gradient(135deg, var(--primary-color, #6A4C93) 0%, var(--secondary-color, #8B5CF6) 100%);
+        color: white;
+        padding: 60px 0;
+        margin: 40px 0;
+    }
+
+    .newsletter .container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .newsletter h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .newsletter p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        line-height: 1.6;
+        opacity: 0.95;
+    }
+
+    .newsletter-form {
+        display: flex;
+        flex-direction: column;
+        max-width: 500px;
+        margin: 0 auto;
+        gap: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .newsletter-form input {
+        padding: 15px 20px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        background: white;
+        color: #333;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .newsletter-form input:focus {
+        outline: none;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        transform: translateY(-2px);
+    }
+
+    .newsletter-form input::placeholder {
+        color: #999;
+    }
+
+    .newsletter-btn {
+        background: white;
+        color: var(--primary-color, #6A4C93);
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .newsletter-btn:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+    }
+
+    .newsletter-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .success-message, .error-message {
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+        font-weight: 500;
+        animation: slideIn 0.5s ease;
+    }
+
+    .success-message {
+        background: rgba(72, 187, 120, 0.2);
+        border: 2px solid rgba(72, 187, 120, 0.5);
+        color: #2f855a;
+    }
+
+    .error-message {
+        background: rgba(245, 101, 101, 0.2);
+        border: 2px solid rgba(245, 101, 101, 0.5);
+        color: #c53030;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .newsletter-benefits {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+        text-align: left;
+    }
+
+    .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .benefit-icon {
+        background: white;
+        color: var(--primary-color, #6A4C93);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .benefit-text h4 {
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .benefit-text p {
+        margin: 0;
+        font-size: 0.95rem;
+        opacity: 0.9;
+        line-height: 1.4;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+        .form-group {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+        }
+
+        .newsletter-btn {
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .newsletter h2 {
+            font-size: 2rem;
+        }
+
+        .newsletter p {
+            font-size: 1.1rem;
+        }
+
+        .newsletter-benefits {
+            text-align: center;
+        }
+    }
+</style>
+
+<script>
+    // Initialize newsletter functionality when this component is loaded
+    function initializeNewsletter() {
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm && !newsletterForm.dataset.initialized) {
+            newsletterForm.dataset.initialized = 'true';
+            
+            newsletterForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const firstName = document.getElementById('firstName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const submitBtn = document.getElementById('submitBtn');
+                const messageContainer = document.getElementById('messageContainer');
+                
+                // Basic validation
+                if (!firstName || !email) {
+                    showMessage('Please fill in all fields.', 'error');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showMessage('Please enter a valid email address.', 'error');
+                    return;
+                }
+                
+                // Update button state
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Subscribing...';
+                
+                try {
+                    // Here you would typically send the data to your server
+                    // For demonstration, we're simulating a successful subscription
+                    await simulateSubscription(firstName, email);
+                    
+                    // Show success message
+                    showMessage(`Thank you, ${firstName}! You've successfully subscribed to our newsletter. Check your email for a welcome message.`, 'success');
+                    
+                    // Clear form
+                    document.getElementById('firstName').value = '';
+                    document.getElementById('email').value = '';
+                    
+                } catch (error) {
+                    showMessage('Oops! Something went wrong. Please try again later.', 'error');
+                } finally {
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Subscribe Now';
+                }
+            });
+        }
+    }
+    
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    function showMessage(message, type) {
+        const messageContainer = document.getElementById('messageContainer');
+        if (messageContainer) {
+            const messageClass = type === 'success' ? 'success-message' : 'error-message';
+            messageContainer.innerHTML = `<div class="${messageClass}">${message}</div>`;
+            
+            // Auto-hide message after 5 seconds
+            setTimeout(() => {
+                messageContainer.innerHTML = '';
+            }, 5000);
+        }
+    }
+    
+    async function simulateSubscription(firstName, email) {
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // In a real implementation, you would:
+        // 1. Send data to your backend server
+        // 2. Add subscriber to your email service (Mailchimp, ConvertKit, etc.)
+        // 3. Send confirmation email
+        
+        console.log('Newsletter subscription:', { firstName, email, timestamp: new Date() });
+        
+        // For demonstration, we'll always succeed
+        return { success: true };
+    }
+    
+    // Auto-initialize if DOM is already loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeNewsletter);
+    } else {
+        initializeNewsletter();
+    }
+</script>
