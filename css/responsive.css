@@ -1,0 +1,43 @@
+/* ================ RESPONSIVE DESIGN STYLES ================ */
+@media (max-width: 768px) {
+    /* Stack navigation on mobile */
+    .navbar {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        margin-top: 20px;
+    }
+    
+    .nav-links li {
+        margin: 0 10px;
+    }
+    
+    /* Smaller text on mobile */
+    .hero h1 {
+        font-size: 36px;
+    }
+    
+    .hero p {
+        font-size: 18px;
+    }
+    
+    /* Stack about content on mobile */
+    .about-content {
+        flex-direction: column;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 992px) {
+    .units-grid, .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small desktop adjustments */
+@media (min-width: 992px) and (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}

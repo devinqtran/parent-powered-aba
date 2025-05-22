@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Parent Powered ABA</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicons/site.webmanifest">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        /* Additional styles specific to services page if needed */
+        .service-detail .about-content { /* Re-using .about-content structure */
+            align-items: center; /* Vertically align items if they have different heights */
+        }
+        .service-detail .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            /* Consider a border like in index.html's about-preview */
+            /* border: 3px solid var(--secondary-color); */
+        }
+        .service-detail .about-text ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        .service-detail .about-text ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Empty header to be filled by JavaScript -->
+    <header></header>
+
+    <!-- Page Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Discover how Parent Powered ABA can support your family's journey with tailored ABA strategies and resources.</p>
+        </div>
+    </section>
+
+    <!-- Service: The Course -->
+    <section class="service-detail about"> <!-- Re-using 'about' class for consistent section styling -->
+        <div class="container">
+            <h2 class="section-title">The Parent Powered ABA Course</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <!-- Replace with your actual image -->
+                    <img src="../assets/images/course_illustration.png" alt="Illustration for ABA Course">
+                </div>
+                <div class="about-text">
+                    <h3>Empower Yourself with Knowledge</h3>
+                    <p>Our comprehensive online course is designed to equip you with the foundational principles and practical strategies of Applied Behavior Analysis (ABA). Learn at your own pace and gain the confidence to support your child's development effectively at home.</p>
+                    <ul>
+                        <li>In-depth modules covering key ABA concepts.</li>
+                        <li>Practical examples, video demonstrations, and downloadable resources.</li>
+                        <li>Actionable strategies for improving communication, social skills, and behavior.</li>
+                        <li>Lifetime access to course materials and future updates.</li>
+                    </ul>
+                    <a href="course.html" class="btn">Explore The Course</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service: Consultations (with Calendly) -->
+    <section class="service-detail about" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title">One-on-One Consultations</h2>
+            <div class="about-content"> <!-- To alternate, place image div after text div -->
+                <div class="about-text">
+                    <h3>Personalized Guidance for Your Family</h3>
+                    <p>Schedule a one-on-one consultation with our experienced ABA professionals. We'll work collaboratively with you to understand your unique challenges, develop tailored strategies, and provide ongoing support to help your child and family thrive.</p>
+                    <ul>
+                        <li>Individualized behavior plan development.</li>
+                        <li>Parent coaching and practical strategy implementation.</li>
+                        <li>Problem-solving for specific behavioral or skill-development concerns.</li>
+                        <li>Flexible virtual scheduling to meet your needs.</li>
+                    </ul>
+                    <!-- 
+                        INSTRUCTIONS FOR CALENDLY INTEGRATION:
+                        1. Simple Link: Replace "YOUR_CALENDLY_SCHEDULING_LINK_HERE" below with your actual Calendly scheduling page URL.
+                           Example: <a href="https://calendly.com/yourusername/consultation" class="btn" target="_blank">Book a Consultation</a>
+
+                        2. Calendly Popup Widget (Recommended for smoother experience):
+                           a. Keep the button below as is, but change its href to "#" and add an onclick event.
+                           b. Add these lines just before your closing </body> tag or in the <head>:
+                              <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                              <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+                           c. Modify the button like this:
+                              <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/yourusername/consultation'});return false;" class="btn">Book a Consultation</a>
+                    -->
+                    <a href="YOUR_CALENDLY_SCHEDULING_LINK_HERE" class="btn" target="_blank">Book a Consultation</a>
+                </div>
+                <div class="about-image">
+                    <!-- Replace with your actual image -->
+                    <img src="../assets/images/consultation_illustration.png" alt="Illustration for One-on-One Consultations">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service: Monthly Support Meetings -->
+    <section class="service-detail about">
+        <div class="container">
+            <h2 class="section-title">Monthly Support Meetings</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <!-- Replace with your actual image -->
+                    <img src="../assets/images/support_meeting_illustration.png" alt="Illustration for Monthly Support Meetings">
+                </div>
+                <div class="about-text">
+                    <h3>Connect, Share, and Grow Together</h3>
+                    <p>Join our exclusive monthly support meetings, a safe and encouraging space for parents to connect with one another, share experiences, and learn from both peers and ABA professionals. These sessions offer valuable insights, practical tips, and a strong sense of community.</p>
+                    <ul>
+                        <li>Facilitated discussions on relevant topics.</li>
+                        <li>Opportunities for Q&A with ABA experts.</li>
+                        <li>Peer support and shared learning.</li>
+                        <li>Access to a network of understanding parents.</li>
+                    </ul>
+                    <a href="contact.html" class="btn">Learn More & Join</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service: Products -->
+    <section class="service-detail about" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title">Helpful Products & Resources</h2>
+            <div class="about-content"> <!-- Text first, then image -->
+                <div class="about-text">
+                    <h3>Tools to Support Your ABA Journey</h3>
+                    <p>Explore our curated selection of products and downloadable resources designed to complement your learning and assist in applying ABA strategies effectively. From visual aids to practical guides, find tools that can make a real difference.</p>
+                    <ul>
+                        <li>Printable visual schedules and token boards.</li>
+                        <li>E-books and guides on specific ABA techniques.</li>
+                        <li>Recommended therapy tools and sensory items.
+                        <li>Checklists and data tracking sheets.</li>
+                    </ul>
+                    <!-- Update this link when you have a product page or section -->
+                    <a href="#products-coming-soon" class="btn disabled">Browse Products (Coming Soon)</a>
+                </div>
+                <div class="about-image">
+                    <!-- Replace with your actual image -->
+                    <img src="../assets/images/products_illustration.png" alt="Illustration for ABA Products and Resources">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Take the next step in empowering your family. Explore our course, book a consultation, or join our supportive community.</p>
+            <a href="contact.html" class="btn">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Empty footer to be filled by JavaScript -->
+    <footer id="contact"></footer>
+
+    <!-- JavaScript Files -->
+    <script src="../js/main.js"></script>
+    
+    <!-- Example for Calendly Popup Widget (see instructions in Consultation section) -->
+    <!--
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    -->
+</body>
+</html>

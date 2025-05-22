@@ -1,0 +1,11 @@
+/* ================ CSS VARIABLE DEFINITIONS ================ */
+/* These variables make it easy to change colors site-wide */
+:root {
+    --primary-color: #00B050; /* Brand green - change this to update all green elements */
+    --secondary-color: #8C52FF; /* Brand purple - change this to update all purple elements */
+    --accent-color: #00B050; /* Used for buttons and highlights */
+    --text-color: #333333; /* Main text color */
+    --light-color: #FFFFFF; /* White text/backgrounds */
+    --light-bg: #F5F7FA; /* Light gray background */
+    --dark-bg: #2B3E50; /* Dark background for footer */
+}
