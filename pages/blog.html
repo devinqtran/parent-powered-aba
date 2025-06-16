@@ -13,215 +13,8 @@
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/responsive.css">
-    <style>
-        /* Blog-specific styles */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .blog-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 3px solid transparent;
-        }
-        
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            border-color: var(--secondary-color);
-        }
-        
-        .blog-card-image {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .blog-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .blog-card:hover .blog-card-image img {
-            transform: scale(1.05);
-        }
-        
-        .blog-card-content {
-            padding: 25px;
-        }
-        
-        .blog-card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: var(--text-light);
-        }
-        
-        .blog-card-category {
-            background: var(--secondary-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        
-        .blog-card-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-            line-height: 1.3;
-        }
-        
-        .blog-card-excerpt {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .blog-card-read-more {
-            color: var(--primary-color);
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
-        
-        .blog-card-read-more:hover {
-            color: var(--secondary-color);
-        }
-        
-        .blog-card-read-more::after {
-            content: "→";
-            margin-left: 8px;
-            transition: margin-left 0.3s ease;
-        }
-        
-        .blog-card-read-more:hover::after {
-            margin-left: 12px;
-        }
-        
-        .blog-categories {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-            justify-content: center;
-        }
-        
-        .category-filter {
-            background: var(--light-bg);
-            border: 2px solid var(--secondary-color);
-            color: var(--text-dark);
-            padding: 8px 16px;
-            border-radius: 25px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .category-filter:hover,
-        .category-filter.active {
-            background: var(--secondary-color);
-            color: white;
-        }
-        
-        .blog-search {
-            max-width: 400px;
-            margin: 0 auto 40px;
-            position: relative;
-        }
-        
-        .blog-search input {
-            width: 100%;
-            padding: 12px 20px;
-            border: 2px solid var(--light-bg);
-            border-radius: 25px;
-            font-size: 16px;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-        
-        .blog-search input:focus {
-            border-color: var(--secondary-color);
-        }
-        
-        .blog-search button {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--secondary-color);
-            border: none;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        
-        .featured-post {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 15px;
-            padding: 40px;
-            color: white;
-            margin-bottom: 50px;
-            text-align: center;
-        }
-        
-        .featured-post h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-        
-        .featured-post p {
-            font-size: 18px;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-        
-        .featured-post .btn {
-            background: white;
-            color: var(--primary-color);
-        }
-        
-        .featured-post .btn:hover {
-            background: var(--light-bg);
-        }
-        
-        @media (max-width: 768px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .blog-categories {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 10px;
-            }
-            
-            .category-filter {
-                white-space: nowrap;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../css/blog-home.css">
+    <link rel="stylesheet" href="../css/blog.css">
 </head>
 <body>
     <!-- Empty header to be filled by JavaScript -->
@@ -242,7 +35,7 @@
             <div class="featured-post">
                 <h3>Latest Featured Article</h3>
                 <p>5 Essential ABA Strategies Every Parent Should Know</p>
-                <a href="blog-post-template.html" class="btn">Read Now</a>
+                <a href="posts/blog-template.html" class="btn">Read Now</a>
             </div>
 
             <!-- Search Bar -->
@@ -275,7 +68,7 @@
                         </div>
                         <h3 class="blog-card-title">10 Simple ABA Techniques for Daily Routines</h3>
                         <p class="blog-card-excerpt">Discover how to seamlessly integrate ABA principles into your child's daily activities, from morning routines to bedtime, making every moment a learning opportunity.</p>
-                        <a href="blog-post-template.html" class="blog-card-read-more">Read More</a>
+                        <a href="posts/blog-template.html" class="blog-card-read-more">Read More</a>
                     </div>
                 </article>
 
@@ -291,7 +84,7 @@
                         </div>
                         <h3 class="blog-card-title">Building Communication Skills Through Play</h3>
                         <p class="blog-card-excerpt">Learn how to use play-based activities to encourage language development and social communication in children with autism spectrum disorders.</p>
-                        <a href="blog-post-template.html" class="blog-card-read-more">Read More</a>
+                        <a href="posts/blog-template.html" class="blog-card-read-more">Read More</a>
                     </div>
                 </article>
 
@@ -307,7 +100,7 @@
                         </div>
                         <h3 class="blog-card-title">Understanding Challenging Behaviors: A Parent's Guide</h3>
                         <p class="blog-card-excerpt">Gain insights into the reasons behind challenging behaviors and learn evidence-based strategies to address them with patience and understanding.</p>
-                        <a href="blog-post-template.html" class="blog-card-read-more">Read More</a>
+                        <a href="posts/blog-template.html" class="blog-card-read-more">Read More</a>
                     </div>
                 </article>
 
@@ -323,7 +116,7 @@
                         </div>
                         <h3 class="blog-card-title">Emma's Journey: From Meltdowns to Milestones</h3>
                         <p class="blog-card-excerpt">Follow Emma's inspiring transformation as her family implements ABA strategies, showcasing the power of consistency and parental involvement in achieving remarkable progress.</p>
-                        <a href="blog-post-template.html" class="blog-card-read-more">Read More</a>
+                        <a href="posts/blog-template.html" class="blog-card-read-more">Read More</a>
                     </div>
                 </article>
 
@@ -339,7 +132,7 @@
                         </div>
                         <h3 class="blog-card-title">Self-Care for ABA Parents: You Matter Too</h3>
                         <p class="blog-card-excerpt">Explore essential self-care strategies for parents implementing ABA techniques, because taking care of yourself is crucial for taking care of your child.</p>
-                        <a href="blog-post-template.html" class="blog-card-read-more">Read More</a>
+                        <a href="posts/blog-template.html" class="blog-card-read-more">Read More</a>
                     </div>
                 </article>
 
@@ -355,7 +148,7 @@
                         </div>
                         <h3 class="blog-card-title">Creating Effective Visual Supports at Home</h3>
                         <p class="blog-card-excerpt">Learn how to design and implement visual supports that enhance understanding, reduce anxiety, and promote independence in your child's daily activities.</p>
-                        <a href="blog-post-template.html" class="blog-card-read-more">Read More</a>
+                        <a href="posts/blog-template.html" class="blog-card-read-more">Read More</a>
                     </div>
                 </article>
             </div>
@@ -379,49 +172,6 @@
 
     <!-- JavaScript Files -->
     <script src="../js/main.js"></script>
-    <script>
-        // Blog functionality
-        function filterByCategory(category) {
-            const cards = document.querySelectorAll('.blog-card');
-            const filters = document.querySelectorAll('.category-filter');
-            
-            // Update active filter
-            filters.forEach(filter => filter.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Show/hide cards
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-        
-        function searchBlog() {
-            const searchTerm = document.getElementById('blog-search-input').value.toLowerCase();
-            const cards = document.querySelectorAll('.blog-card');
-            
-            cards.forEach(card => {
-                const title = card.querySelector('.blog-card-title').textContent.toLowerCase();
-                const excerpt = card.querySelector('.blog-card-excerpt').textContent.toLowerCase();
-                const category = card.querySelector('.blog-card-category').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || excerpt.includes(searchTerm) || category.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-        
-        // Search on Enter key
-        document.getElementById('blog-search-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchBlog();
-            }
-        });
-    </script>
+    <script src="../js/blog.js"></script>
 </body>
 </html>
