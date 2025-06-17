@@ -3,14 +3,44 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded. Current page:', window.location.pathname);
 
+    // Determine the base path and directory context
+    function getDirectoryContext() {
+        const path = window.location.pathname;
+        if (path.includes('/blog/posts/')) {
+            return { 
+                context: 'blog-post', 
+                basePath: '../../../',
+                isInSubDirectory: true 
+            };
+        } else if (path.includes('/blog/')) {
+            return { 
+                context: 'blog', 
+                basePath: '../',
+                isInSubDirectory: true 
+            };
+        } else if (path.includes('/pages/')) {
+            return { 
+                context: 'pages', 
+                basePath: '../',
+                isInSubDirectory: true 
+            };
+        } else {
+            return { 
+                context: 'root', 
+                basePath: './',
+                isInSubDirectory: false 
+            };
+        }
+    }
+
+    const directoryInfo = getDirectoryContext();
+    console.log('Directory context:', directoryInfo);
+
     // Load header component
     const headerElement = document.querySelector('header');
     if (headerElement) {
-        const isInPagesDirectory = window.location.pathname.includes('/pages/');
-        console.log('Header loading: isInPagesDirectory =', isInPagesDirectory);
-        
-        const headerPath = isInPagesDirectory 
-            ? '../components/header.html' 
+        const headerPath = directoryInfo.isInSubDirectory 
+            ? directoryInfo.basePath + 'components/header.html'
             : 'components/header.html';
         console.log('Header loading: path =', headerPath);
         
@@ -23,13 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 headerElement.innerHTML = data;
                 console.log('Header HTML loaded.');
 
-                if (isInPagesDirectory) {
-                    console.log('Fixing paths in HEADER because isInPagesDirectory is true.');
+                if (directoryInfo.isInSubDirectory) {
+                    console.log(`Fixing paths in HEADER for ${directoryInfo.context} context.`);
+                    
                     // Fix image paths
                     headerElement.querySelectorAll('img[src^="assets/"]').forEach(img => {
                         const currentSrc = img.getAttribute('src');
                         if (currentSrc && !currentSrc.startsWith('../')) {
-                            img.src = '../' + currentSrc;
+                            img.src = directoryInfo.basePath + currentSrc;
                         }
                     });
                     
@@ -38,36 +69,62 @@ document.addEventListener('DOMContentLoaded', function() {
                         const originalHref = link.getAttribute('href');
                         console.log(`Header Link Processing: Original href = "${originalHref}"`);
 
-                        // This first 'if' handles conditions where we DON'T want to modify the href
-                        if (!originalHref || // No href attribute
-                            originalHref.startsWith('#') || // Anchor link
-                            originalHref.startsWith('http') || // Absolute URL
-                            originalHref.startsWith('mailto:') || // Mailto link
-                            originalHref.startsWith('tel:') || // Tel link
-                            originalHref.startsWith('/') || // Root-relative link
-                            originalHref.startsWith('../') // Already adjusted or explicitly relative
+                        // Skip modification for special links
+                        if (!originalHref || 
+                            originalHref.startsWith('#') || 
+                            originalHref.startsWith('http') || 
+                            originalHref.startsWith('mailto:') || 
+                            originalHref.startsWith('tel:') || 
+                            originalHref.startsWith('/') || 
+                            originalHref.startsWith('../')
                         ) {
                             console.log(`  -> Skipping modification for: "${originalHref}" (special link or already relative)`);
                         } else {
-                            // At this point, originalHref is a simple relative path like "index.html" or "pages/about.html"
                             console.log(`  -> Eligible for modification: "${originalHref}"`);
+                            
                             if (originalHref === 'index.html') {
-                                link.setAttribute('href', '../' + originalHref);
+                                link.setAttribute('href', directoryInfo.basePath + originalHref);
                                 console.log(`    -> Rule (index.html): New href = "${link.getAttribute('href')}"`);
                             } else if (originalHref.startsWith('pages/')) {
-                                // This is the key for subpage to subpage links when on a subpage
-                                link.setAttribute('href', originalHref.substring('pages/'.length));
+                                // Handle subpage to subpage navigation
+                                if (directoryInfo.context === 'pages') {
+                                    link.setAttribute('href', originalHref.substring('pages/'.length));
+                                } else {
+                                    // From blog to pages
+                                    link.setAttribute('href', directoryInfo.basePath + originalHref);
+                                }
                                 console.log(`    -> Rule (pages/): New href = "${link.getAttribute('href')}"`);
+                            } else if (originalHref.startsWith('blog/') || originalHref === 'blog.html') {
+                                // Handle blog navigation
+                                if (directoryInfo.context === 'blog' || directoryInfo.context === 'blog-post') {
+                                    // Already in blog context
+                                    if (originalHref === 'blog.html') {
+                                        link.setAttribute('href', directoryInfo.context === 'blog-post' ? '../blog.html' : 'blog.html');
+                                    } else {
+                                        link.setAttribute('href', directoryInfo.basePath + originalHref);
+                                    }
+                                } else {
+                                    // From other contexts to blog
+                                    link.setAttribute('href', directoryInfo.basePath + originalHref);
+                                }
+                                console.log(`    -> Rule (blog): New href = "${link.getAttribute('href')}"`);
+                            } else if (originalHref.startsWith('#')) {
+                                // Handle anchor links - no modification needed
+                                console.log(`    -> Rule (anchor): No change needed for "${originalHref}"`);
                             } else {
-                                // This case handles links like "contact.html" (no pages/ prefix)
-                                // if they were in header.html like that. When on a subpage,
-                                // this path is already correct relative to /pages/, so no change is needed.
-                                console.log(`    -> Rule (other relative): No change needed for "${originalHref}", already relative to current /pages/ context.`);
+                                // Other relative links - typically these should get the base path prepended
+                                if (directoryInfo.context === 'blog-post' && !originalHref.includes('.html')) {
+                                    // Likely a relative page link, prepend base path
+                                    link.setAttribute('href', directoryInfo.basePath + originalHref);
+                                    console.log(`    -> Rule (other relative with base): New href = "${link.getAttribute('href')}"`);
+                                } else {
+                                    console.log(`    -> Rule (other relative): No change needed for "${originalHref}"`);
+                                }
                             }
                         }
                     });
                 } else {
-                    console.log('Not in pages directory, so no path fixing for header content.');
+                    console.log('In root directory, so no path fixing for header content.');
                 }
                 
                 initializeNavigation(); // Call after paths are fixed
@@ -80,11 +137,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load newsletter component
     const newsletterElement = document.querySelector('.newsletter-component');
     if (newsletterElement) {
-        const isInPagesDirectory = window.location.pathname.includes('/pages/');
-        console.log('Newsletter loading: isInPagesDirectory =', isInPagesDirectory);
-        
-        const newsletterPath = isInPagesDirectory 
-            ? '../components/newsletter.html' 
+        const newsletterPath = directoryInfo.isInSubDirectory 
+            ? directoryInfo.basePath + 'components/newsletter.html'
             : 'components/newsletter.html';
         console.log('Newsletter loading: path =', newsletterPath);
         
@@ -96,9 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 newsletterElement.innerHTML = data;
                 console.log('Newsletter HTML loaded.');
-                
-                // Newsletter component includes its own JavaScript initialization
-                // The script tag in the component will auto-execute
             })
             .catch(error => console.warn('Could not load newsletter:', error));
     }
@@ -106,9 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load footer component
     const footerElement = document.querySelector('footer');
     if (footerElement) {
-        const isInPagesDirectoryFooter = window.location.pathname.includes('/pages/');
-        const footerPath = isInPagesDirectoryFooter 
-            ? '../components/footer.html' 
+        const footerPath = directoryInfo.isInSubDirectory 
+            ? directoryInfo.basePath + 'components/footer.html'
             : 'components/footer.html';
         
         fetch(footerPath)
@@ -118,11 +168,11 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 footerElement.innerHTML = data;
-                if (isInPagesDirectoryFooter) {
+                if (directoryInfo.isInSubDirectory) {
                     footerElement.querySelectorAll('img[src^="assets/"]').forEach(img => {
                         const currentSrc = img.getAttribute('src');
                         if (currentSrc && !currentSrc.startsWith('../')) {
-                            img.src = '../' + currentSrc;
+                            img.src = directoryInfo.basePath + currentSrc;
                         }
                     });
                 }
@@ -132,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function initializeNavigation() {
         console.log('Initializing navigation (smooth scroll, active links)...');
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -154,10 +205,8 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.remove('active'); 
             let linkUrl;
             try {
-                // link.href will be the fully resolved absolute URL
                 linkUrl = new URL(link.href); 
             } catch (e) {
-                // console.warn(`Skipping link with invalid href: ${link.getAttribute('href')}`);
                 return; 
             }
 
@@ -165,64 +214,55 @@ document.addEventListener('DOMContentLoaded', function() {
                 return; // Skip external links
             }
             
-            // Normalize pathnames for comparison (ensure trailing slashes consistency, treat / and /index.html same)
-            let currentPathNormalized = currentUrl.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '');
-            if (currentPathNormalized === '') currentPathNormalized = '/'; // Root case
-
-            let linkPathNormalized = linkUrl.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '');
-            if (linkPathNormalized === '') linkPathNormalized = '/'; // Root case
-
-
-            // More direct comparison:
-            // Get the original 'href' attribute as written in the HTML (or as modified by JS)
             const rawLinkHref = link.getAttribute('href');
 
             // Check for home page
             if ((currentUrl.pathname === '/' || currentUrl.pathname === '/index.html')) {
-                if (rawLinkHref === 'index.html' || rawLinkHref === '../index.html' || rawLinkHref === './index.html') {
+                if (rawLinkHref === 'index.html' || rawLinkHref === '../index.html' || rawLinkHref === '../../../index.html' || rawLinkHref === './index.html') {
                     link.classList.add('active');
-                    return; // Found active link, exit for this link
+                    return;
+                }
+            }
+            
+            // Check for blog pages
+            if (currentUrl.pathname.includes('/blog/')) {
+                if (rawLinkHref === 'blog.html' || rawLinkHref === '../blog.html' || rawLinkHref === '../../../blog.html') {
+                    link.classList.add('active');
+                    return;
                 }
             }
             
             // Check for other pages
-            // We need to compare the final part of the URL path
             const currentPageFileName = currentUrl.pathname.substring(currentUrl.pathname.lastIndexOf('/') + 1) || 'index.html';
             let linkTargetFileName = rawLinkHref.substring(rawLinkHref.lastIndexOf('/') + 1);
             
-            // Handle cases where rawLinkHref might be like "about.html" or "../index.html"
-            if (rawLinkHref.startsWith('../')) { // e.g., ../index.html
-                linkTargetFileName = 'index.html'; // Assume it targets index if it goes up a level
-            } else if (!rawLinkHref.includes('/')) { // e.g., "about.html"
+            if (rawLinkHref.startsWith('../')) {
+                if (rawLinkHref.includes('index.html')) {
+                    linkTargetFileName = 'index.html';
+                } else if (rawLinkHref.includes('blog.html')) {
+                    linkTargetFileName = 'blog.html';
+                }
+            } else if (!rawLinkHref.includes('/')) {
                 // linkTargetFileName is already correct
             }
 
-
             if (currentPageFileName === linkTargetFileName && currentPageFileName !== 'index.html') {
-                 link.classList.add('active');
+                link.classList.add('active');
             } else if (currentPageFileName === 'index.html' && linkTargetFileName === 'index.html') {
-                 // This was handled by the specific homepage check above, but as a fallback
-                 if (rawLinkHref === 'index.html' || rawLinkHref === '../index.html' || rawLinkHref === './index.html') {
+                if (rawLinkHref === 'index.html' || rawLinkHref === '../index.html' || rawLinkHref === '../../../index.html' || rawLinkHref === './index.html') {
                     link.classList.add('active');
-                 }
+                }
             }
-
-
         });
+        
         console.log('Active link highlighting based on URL complete.');
-        updateActiveNavLink(); // Call after general active links are set
+        updateActiveNavLink();
     }
     
     // Fallback initialization if header wasn't dynamically loaded
     if (!headerElement || (headerElement.childNodes.length > 0 && headerElement.innerHTML.trim() !== '')) {
-        // Check if header content exists but was not fetched (e.g. static include or fetch failed silently)
-        // If headerElement is not null AND (it has children OR its trimmed innerHTML isn't empty)
-        // This implies that initializeNavigation might not have run if the fetch promise chain was the only place it was called.
-        // However, initializeNavigation IS called within the .then() of the fetch, so this might be redundant
-        // unless the fetch itself fails very early or headerElement is null.
-        // The primary purpose here is to ensure initializeNavigation runs if header is static.
         console.log('Header not loaded dynamically or already present, calling initializeNavigation if applicable.');
-        if (document.querySelector('.nav-links a')) { // Check if nav links are actually present
+        if (document.querySelector('.nav-links a')) {
              initializeNavigation();
         }
     }
@@ -231,14 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const sections = document.querySelectorAll('section[id]');
         const scrollPosition = window.scrollY;
         
-        // Temporarily remove 'active' from page links if a section link will be activated
-        // This is tricky logic, for now, let's allow both to be active if a section is scrolled to
-        // Or, ensure that page links are NOT also hash links.
-
         document.querySelectorAll('.nav-links a[href^="#"]').forEach(sectionLink => {
-            // Don't remove 'active' if it's also the main page link that's active.
-            // This requires checking if the #link is part of a fully active page link.
-            // For simplicity now, just remove from # links and re-add if active.
              sectionLink.classList.remove('active');
         });
 
@@ -253,11 +286,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     navLinkForSection.classList.add('active');
                 }
             } 
-            // No 'else remove active' here, because the loop above clears all # links first.
-            // And we don't want to deactivate the main page link.
         });
     }
     
     window.addEventListener('scroll', updateActiveNavLink);
-    // updateActiveNavLink(); // Call once on load - initializeNavigation calls it.
 });

@@ -216,6 +216,96 @@
     line-height: 1.4;
 }
 
+/* Breadcrumb Styles */
+.breadcrumb-nav {
+    background: var(--light-bg); /* Using your defined light background */
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e5e5e5;
+    margin-top: 0;
+    position: relative;
+    z-index: 100;
+}
+
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: ">";
+    margin: 0 0.5rem;
+    color: #666;
+    font-weight: normal;
+}
+
+.breadcrumb a {
+    color: var(--primary-color); /* Using your defined primary color (#00B050) */
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+    color: var(--secondary-color); /* Using your purple for hover instead of undefined variable */
+}
+
+.breadcrumb .current {
+    color: #666;
+    font-weight: 500;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Container for breadcrumb */
+.breadcrumb-nav .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Integration with existing blog header */
+.breadcrumb-nav + .blog-header {
+    padding-top: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .breadcrumb {
+        font-size: 0.8rem;
+    }
+    
+    .breadcrumb li:not(:last-child)::after {
+        margin: 0 0.25rem;
+    }
+    
+    .breadcrumb .current {
+        max-width: 200px;
+    }
+    
+    .breadcrumb-nav {
+        padding: 0.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .breadcrumb .current {
+        max-width: 150px;
+    }
+}
+
 /* Share Buttons */
 .share-buttons {
     display: flex;
