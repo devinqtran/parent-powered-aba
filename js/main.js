@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!headerElement || (headerElement.childNodes.length > 0 && headerElement.innerHTML.trim() !== '')) {
         console.log('Header not loaded dynamically or already present, calling initializeNavigation if applicable.');
         if (document.querySelector('.nav-links a')) {
-             initializeNavigation();
+            initializeNavigation();
         }
     }
     
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollPosition = window.scrollY;
         
         document.querySelectorAll('.nav-links a[href^="#"]').forEach(sectionLink => {
-             sectionLink.classList.remove('active');
+            sectionLink.classList.remove('active');
         });
 
         sections.forEach(section => {
@@ -289,5 +289,131 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    window.addEventListener('scroll', updateActiveNavLink);
+    // Initialize service card click functionality with double-click prevention
+    function initializeServiceCards() {
+        console.log('Initializing service card click functionality...');
+
+        // Check if already initialized to prevent double-binding
+        if (document.body.hasAttribute('data-service-cards-initialized')) {
+            console.log('Service cards already initialized, skipping...');
+            return;
+        }
+
+        // Define the links for each service card based on their heading text
+        const serviceCardLinks = {
+            'Complete ABA Parenting Course Access': 'pages/course.html',
+            'ABA Based Product Line': 'https://www.etsy.com/shop/ParentPoweredABA',
+            'Personalized ABA Consultations': 'pages/services.html#consultation',
+            'Our Youtube Channel': 'https://youtube.com/@parentpoweredaba',
+            'ABA Blog & Resources': 'pages/blog.html',
+            'Monthly Support Meetings': 'pages/services.html#support-meetings'
+        };
+
+        // Get all service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            // Skip if this card is already initialized
+            if (card.hasAttribute('data-click-initialized')) {
+                console.log('Card already initialized, skipping...');
+                return;
+            }
+
+            const heading = card.querySelector('h3');
+            if (heading) {
+                const headingText = heading.textContent.trim();
+                let targetLink = serviceCardLinks[headingText];
+                
+                // Also check data-target attribute as fallback
+                if (!targetLink) {
+                    targetLink = card.getAttribute('data-target');
+                }
+                
+                if (targetLink) {
+                    // Make the card clickable
+                    card.style.cursor = 'pointer';
+                    card.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+                
+                    // Add hover effects
+                    card.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-5px)';
+                        this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+                    });
+                
+                    card.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0)';
+                        this.style.boxShadow = '';
+                    });
+                
+                    // FIXED: Add click functionality with throttling
+                    let isProcessing = false;
+                    
+                    card.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Prevent rapid clicks
+                        if (isProcessing) {
+                            console.log('Click already processing, ignoring...');
+                            return;
+                        }
+                        
+                        isProcessing = true;
+                        
+                        // Reset the flag after a short delay
+                        setTimeout(() => {
+                            isProcessing = false;
+                        }, 1000);
+                    
+                        // Check if this is marked as external or starts with http
+                        const isExternalLink = this.getAttribute('data-external') === 'true' || targetLink.startsWith('http');
+                    
+                        if (isExternalLink) {
+                            console.log('Opening external link:', targetLink);
+                            // Open external links in new tab
+                            window.open(targetLink, '_blank', 'noopener,noreferrer');
+                        } else {
+                            // Handle internal navigation with proper path resolution
+                            let finalLink = targetLink;
+                            if (directoryInfo.isInSubDirectory && !targetLink.startsWith('../')) {
+                                finalLink = directoryInfo.basePath + targetLink;
+                            }
+                            window.location.href = finalLink;
+                        }
+                    });
+
+                    // Add accessibility attributes (if not already present)
+                    if (!card.getAttribute('role')) {
+                        card.setAttribute('role', 'button');
+                    }
+                    if (!card.getAttribute('tabindex')) {
+                        card.setAttribute('tabindex', '0');
+                    }
+                    if (!card.getAttribute('aria-label')) {
+                        const isExternal = card.getAttribute('data-external') === 'true' || targetLink.startsWith('http');
+                        const labelSuffix = isExternal ? ' (opens in new tab)' : '';
+                        card.setAttribute('aria-label', `Navigate to ${headingText}${labelSuffix}`);
+                    }
+                
+                    // Add keyboard navigation support
+                    card.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.click();
+                        }
+                    });
+
+                    // Mark this card as initialized
+                    card.setAttribute('data-click-initialized', 'true');
+                    console.log(`Service card "${headingText}" made clickable with link: ${targetLink}`);
+                }
+            }
+        });
+        
+        // Mark service cards as initialized
+        document.body.setAttribute('data-service-cards-initialized', 'true');
+        console.log('Service card initialization complete.');
+    }
+
+    // Call initialization functions
+    initializeServiceCards();
 });

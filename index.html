@@ -4,7 +4,32 @@
     <meta charset="UTF-8">
     <!-- Makes the site responsive on all devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parent Powered ABA - Empowering Parents of Children with Autism</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Parent Powered ABA - ABA Therapy Training for Parents of Autistic Children</title>
+    <meta name="description" content="Learn professional ABA therapy strategies at home. Empower your family with expert-led courses, consultations, and support for children with autism. Join our parent community today.">
+    <meta name="keywords" content="ABA therapy, autism support, parent training, ABA strategies, autism therapy, behavioral therapy, parent empowerment, autism education">
+    <meta name="author" content="Parent Powered ABA">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Parent Powered ABA - Empowering Parents of Children with Autism">
+    <meta property="og:description" content="Learn professional ABA therapy strategies to help your child with autism thrive. Expert courses, consultations, and community support for families.">
+    <meta property="og:image" content="https://yourwebsite.com/assets/images/logo_purple.png">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Parent Powered ABA">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Parent Powered ABA - ABA Therapy Training for Parents">
+    <meta name="twitter:description" content="Learn professional ABA strategies to help your child with autism succeed. Expert-led courses and family support.">
+    <meta name="twitter:image" content="https://yourwebsite.com/assets/images/logo_purple.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com">
+    
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
@@ -14,90 +39,406 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Parent Powered ABA",
+      "description": "ABA therapy training and support for parents of children with autism",
+      "url": "https://yourwebsite.com",
+      "logo": "https://yourwebsite.com/assets/images/logo_purple.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "areaServed": "US",
+        "availableLanguage": "en"
+      },
+      "sameAs": [
+        "https://facebook.com/parentpoweredaba",
+        "https://instagram.com/parentpoweredaba"
+      ],
+      "offers": {
+        "@type": "Course",
+        "name": "ABA Training Course for Parents",
+        "description": "Comprehensive 6-unit curriculum teaching ABA techniques for parents of children with autism",
+        "provider": {
+          "@type": "Organization",
+          "name": "Parent Powered ABA"
+        }
+      }
+    }
+    </script>
 </head>
 <body>
-    <!-- Include Header -->
-    <header></header>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Include Header - Will be dynamically loaded by main.js -->
+    <header role="banner" id="site-header">
+        <!-- Navigation placeholder - will be populated by main.js -->
+        <nav role="navigation" aria-label="Main navigation" class="nav-placeholder">
+            <!-- Fallback navigation for no-JS users -->
+            <noscript>
+                <div class="container">
+                    <a href="index.html" class="logo-link">
+                        <img src="assets/images/logo_purple.png" alt="Parent Powered ABA Logo" width="150" height="auto">
+                    </a>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pages/about.html">About</a></li>
+                        <li><a href="pages/services.html">Services</a></li>
+                        <li><a href="pages/course.html">Course</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </noscript>
+        </nav>
+    </header>
 
     <!-- ================ HERO SECTION ================ -->
     <!-- Main banner with call to action -->
-    <section class="hero">
-        <div class="container">
-            <div style="display: flex; justify-content: center; margin-bottom: 30px;">
-                <!-- Replace the placeholder with your actual logo image -->
-                <img src="assets/images/logo_purple.png" alt="Parent Powered ABA Logo" style="max-width: 200px;">
-            </div>
-            <h1>Strengthening Families Through ABA Strategies</h1>
-            <p>Learn professional ABA strategies to help your child improve communication, social skills, and behavior while strengthening your family bond.</p>
-            <a href="pages/course.html" class="btn">Enroll Now</a>
-        </div>
-    </section>
-
-    <!-- ================ ABOUT SECTION PREVIEW ================ -->
-    <section id="about-preview" class="about">
-        <div class="container">
-            <h2 class="section-title">Our Approach</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p><strong>At our core we believe in strengthening families and empowering others to succeed.</strong> Unlike popular alternatives where parents pay by the hour, we offer courses, classes, and consultations that will better equip you for facing challenges common to children with autism.</p>
-                    <p>Preparation starts in the home. As parents it is our duty to nourish and care for our children to the best of our abilities.</p>
-                    <a href="pages/about.html" class="btn">Learn More About Us</a>
+    <main id="main-content" role="main">
+        <section class="hero" aria-labelledby="hero-heading" id="hero">
+            <div class="container">
+                <div class="hero-logo-container" style="display: flex; justify-content: center; margin-bottom: 30px;">
+                    <!-- Logo with proper loading attributes -->
+                    <img src="assets/images/logo_purple.png" 
+                         alt="Parent Powered ABA Logo - Empowering families through ABA therapy training" 
+                         class="hero-logo"
+                         style="max-width: 200px;" 
+                         width="200" 
+                         height="auto"
+                         loading="eager">
                 </div>
-                <div class="about-image">
-                    <img src="assets/images/logo_black.png" alt="Parents with child" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid var(--primary-color);">
+                <h1 id="hero-heading" class="hero-title">Strengthening Families Through ABA Strategies</h1>
+                <p class="hero-description">Learn professional ABA strategies to help your child improve communication, social skills, and behavior while strengthening your family bond.</p>
+                <div class="hero-cta">
+                    <a href="pages/course.html" class="btn btn-primary" aria-describedby="hero-heading">Enroll Now</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ================ NEWSLETTER COMPONENT ================ -->
-    <!-- Newsletter signup will be loaded here -->
-    <div class="newsletter-component"></div>
-
-    <!-- ================ SERVICES PREVIEW SECTION ================ -->
-    <section id="services-preview" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <i>📚</i> <!-- You can replace with an icon or image -->
-                    <h3>Full Course Access</h3>
-                    <p>Complete access to our comprehensive 5-unit curriculum with expert instruction on ABA techniques.</p>
-                </div>
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <i>👥</i> <!-- You can replace with an icon or image -->
-                    <h3>Monthly Support Meetings</h3>
-                    <p>Join our monthly meetings to interact with other parents, share strategies, and build a community of support.</p>
-                </div>
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <i>👩‍💼</i> <!-- You can replace with an icon or image -->
-                    <h3>One-on-One Consultations</h3>
-                    <p>Meet with our experts for personalized strategies tailored to your family's specific needs and challenges.</p>
+        <!-- ================ ABOUT SECTION PREVIEW ================ -->
+        <section id="about-preview" class="about section" aria-labelledby="about-heading">
+            <div class="container">
+                <h2 id="about-heading" class="section-title">Our Approach to ABA Therapy Training</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="about-highlight"><strong>At our core we believe in strengthening families and empowering parents to succeed.</strong> Unlike traditional hourly ABA therapy services, we offer comprehensive courses, classes, and consultations that equip you with the skills to support your child with autism at home.</p>
+                        <p class="about-description">Effective ABA therapy preparation starts in the home. As parents, it is our responsibility to nourish and care for our children with autism to the best of our abilities using proven behavioral strategies.</p>
+                        <div class="about-cta">
+                            <a href="pages/about.html" class="btn btn-secondary" aria-describedby="about-heading">Learn More About Our ABA Approach</a>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="assets/images/logo_black.png" 
+                             alt="Parent Powered ABA - Family-centered autism support and ABA training" 
+                             class="about-img"
+                             style="max-width: 400px; max-height: 400px; width: auto; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid var(--primary-color);" 
+                             loading="lazy">
+                    </div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="pages/services.html" class="btn">View All Services</a>
+        </section>
+
+        <!-- ================ SERVICES PREVIEW SECTION ================ -->
+        <section id="services-preview" class="services section" aria-labelledby="services-heading">
+            <div class="container">
+                <h2 id="services-heading" class="section-title">Our Family Focused ABA Services</h2>
+                <div class="services-grid">
+                    <!-- Service 1 - Enhanced for JS interaction -->
+                    <article class="service-card" 
+                             data-service="course"
+                             data-target="pages/course.html"
+                             tabindex="0"
+                             role="button"
+                             aria-label="Navigate to Complete ABA Parenting Course Access">
+                        <div class="service-icon" aria-hidden="true">📚</div>
+                        <h3 class="service-title">Complete ABA Parenting Course Access</h3>
+                        <p class="service-description">Comprehensive 6-unit curriculum with expert instruction on Applied Behavior Analysis techniques for autism support at home.</p>
+                        <div class="service-card-overlay">
+                            <span class="service-cta-text">Learn More</span>
+                        </div>
+                    </article>
+                    
+                    <!-- Service 2 - Enhanced for JS interaction -->
+                    <article class="service-card" 
+                             data-service="products"
+                             data-target="https://www.etsy.com/shop/ParentPoweredABA"
+                             data-external="true"
+                             tabindex="0"
+                             role="button"
+                             aria-label="Navigate to ABA Based Product Line (opens in new tab)">
+                        <div class="service-icon" aria-hidden="true">🛒</div>
+                        <h3 class="service-title">ABA Based Product Line</h3>
+                        <p class="service-description">Access a range of ABA-based products designed to support your child's learning and development at home.</p>
+                        <div class="service-card-overlay">
+                            <span class="service-cta-text">Shop Now</span>
+                        </div>
+                    </article>
+                    
+                    <!-- Service 3 - Enhanced for JS interaction -->
+                    <article class="service-card" 
+                             data-service="consultation"
+                             data-target="pages/services.html"
+                             tabindex="0"
+                             role="button"
+                             aria-label="Navigate to Personalized ABA Consultations">
+                        <div class="service-icon" aria-hidden="true">👨‍👩‍👧‍👦</div>
+                        <h3 class="service-title">Personalized ABA Consultations</h3>
+                        <p class="service-description">One-on-one consultations with ABA experts for personalized autism support strategies tailored to your family's specific needs.</p>
+                        <div class="service-card-overlay">
+                            <span class="service-cta-text">Book Now</span>
+                        </div>
+                    </article>
+                    
+                    <!-- Service 4 - Enhanced for JS interaction (external link) -->
+                    <article class="service-card" 
+                             data-service="youtube"
+                             data-target="https://youtube.com/@parentpoweredaba"
+                             data-external="true"
+                             tabindex="0"
+                             role="button"
+                             aria-label="Visit our YouTube Channel (opens in new tab)">
+                        <div class="service-icon" aria-hidden="true">📺</div>
+                        <h3 class="service-title">Our Youtube Channel</h3>
+                        <p class="service-description">Explore our YouTube channel for valuable resources, tips, and strategies on ABA therapy and autism support.</p>
+                        <div class="service-card-overlay">
+                            <span class="service-cta-text">Watch Now</span>
+                        </div>
+                    </article>
+                    
+                    <!-- Service 5 - Blog -->
+                    <article class="service-card" 
+                             data-service="blog"
+                             data-target="pages/blog.html"
+                             tabindex="0"
+                             role="button"
+                             aria-label="Navigate to our ABA Blog">
+                        <div class="service-icon" aria-hidden="true">📝</div>
+                        <h3 class="service-title">ABA Blog & Resources</h3>
+                        <p class="service-description">Read expert articles, practical tips, and real parent stories about implementing ABA strategies in daily family life.</p>
+                        <div class="service-card-overlay">
+                            <span class="service-cta-text">Read More</span>
+                        </div>
+                    </article>
+                    
+                    <!-- Service 6 - Monthly Support Meetings -->
+                    <article class="service-card" 
+                             data-service="support-meetings"
+                             data-target="pages/services.html"
+                             tabindex="0"
+                             role="button"
+                             aria-label="Navigate to Monthly Support Meetings">
+                        <div class="service-icon" aria-hidden="true">🤝</div>
+                        <h3 class="service-title">Monthly Support Meetings</h3>
+                        <p class="service-description">Join our virtual monthly meetups where parents share experiences, ask questions, and receive ongoing support from our ABA experts.</p>
+                        <div class="service-card-overlay">
+                            <span class="service-cta-text">Join Us</span>
+                        </div>
+                    </article>
+                </div>
+                <div class="services-footer" style="text-align: center; margin-top: 40px;">
+                    <a href="pages/services.html" class="btn btn-outline" aria-describedby="services-heading">View All ABA Training Services</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ================ CALL-TO-ACTION SECTION ================ -->
-    <!-- Encourages visitors to take action -->
-    <section class="cta">
-        <div class="container">
-            <h2>Ready to Empower Your Family?</h2>
-            <p>Enroll today and learn the professional strategies that will help your child thrive while strengthening your family bond.</p>
-            <a href="pages/about.html" class="btn">Get Started Today</a>
-        </div>
-    </section>
+        <!-- ================ NEWSLETTER COMPONENT ================ -->
+        <!-- Newsletter signup will be dynamically loaded by main.js -->
+        <section class="newsletter-component section" aria-label="Newsletter signup" id="newsletter">
+            <!-- Newsletter content will be loaded here by main.js -->
+            <noscript>
+                <div class="container">
+                    <h2>Stay Connected</h2>
+                    <p>Subscribe to our newsletter for ABA tips and family support resources.</p>
+                    <!-- Fallback newsletter form for no-JS users -->
+                </div>
+            </noscript>
+        </section>
 
-    <!-- Include Footer -->
-    <footer id="contact"></footer>
+        <!-- ================ CALL-TO-ACTION SECTION ================ -->
+        <!-- Encourages visitors to take action -->
+        <section class="cta section" aria-labelledby="cta-heading" id="cta">
+            <div class="container">
+                <h2 id="cta-heading" class="cta-title">Ready to Empower Your Family with ABA Strategies?</h2>
+                <p class="cta-description">Enroll today and learn the professional ABA therapy techniques that will help your child with autism thrive while strengthening your family bond.</p>
+                <div class="cta-actions">
+                    <a href="pages/course.html" class="btn btn-primary btn-large" aria-describedby="cta-heading">Start Your ABA Journey Today</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- JavaScript Files -->
+    <!-- Include Footer - Will be dynamically loaded by main.js -->
+    <footer id="contact" role="contentinfo" class="site-footer">
+        <!-- Footer content will be loaded here by main.js -->
+        <noscript>
+            <div class="container">
+                <p>&copy; 2024 Parent Powered ABA. All rights reserved.</p>
+                <!-- Fallback footer content for no-JS users -->
+            </div>
+        </noscript>
+    </footer>
+
+    <!-- Enhanced skip link styles for accessibility -->
+    <style>
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--primary-color, #007cba);
+        color: white;
+        padding: 8px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 1000;
+        font-weight: 500;
+        transition: top 0.3s ease;
+    }
+    .skip-link:focus {
+        top: 6px;
+    }
+
+    /* Service card enhancements for JS interaction */
+    .service-card {
+        position: relative;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .service-card:hover,
+    .service-card:focus {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        outline: 2px solid var(--primary-color, #007cba);
+        outline-offset: 2px;
+    }
+
+    .service-card-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0,124,186,0.9), transparent);
+        color: white;
+        padding: 15px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        text-align: center;
+    }
+
+    .service-card:hover .service-card-overlay,
+    .service-card:focus .service-card-overlay {
+        transform: translateY(0);
+    }
+
+    .service-cta-text {
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Loading states for dynamic content */
+    .nav-placeholder:empty::after,
+    .newsletter-component:empty::after,
+    .site-footer:empty::after {
+        content: "Loading...";
+        display: block;
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-style: italic;
+    }
+
+    /* Enhanced responsive behavior */
+    @media (max-width: 768px) {
+        .service-card-overlay {
+            position: static;
+            transform: none;
+            background: transparent;
+            color: inherit;
+            padding: 10px 0 0 0;
+        }
+        
+        .service-cta-text {
+            color: var(--primary-color, #007cba);
+        }
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+        .service-card:hover,
+        .service-card:focus {
+            outline: 3px solid;
+        }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+        .service-card,
+        .service-card-overlay,
+        .skip-link {
+            transition: none;
+        }
+    }
+    </style>
+
+    <!-- JavaScript Files - Load main.js last for proper initialization -->
+    <script>
+        // Add loading state management
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loaded class when DOM is ready
+            document.body.classList.add('dom-loaded');
+            
+            // Add event listener for when all components are loaded
+            let componentsLoaded = 0;
+            const totalComponents = 3; // header, newsletter, footer
+            
+            function checkAllComponentsLoaded() {
+                componentsLoaded++;
+                if (componentsLoaded >= totalComponents) {
+                    document.body.classList.add('components-loaded');
+                    
+                    // Dispatch custom event for when everything is ready
+                    const event = new CustomEvent('siteReady', {
+                        detail: { timestamp: Date.now() }
+                    });
+                    document.dispatchEvent(event);
+                }
+            }
+            
+            // Monitor for component loading
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        const target = mutation.target;
+                        if (target.matches('header, .newsletter-component, footer')) {
+                            checkAllComponentsLoaded();
+                        }
+                    }
+                });
+            });
+            
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+        
+        // Enhanced error handling for component loading
+        window.addEventListener('error', function(e) {
+            if (e.filename && e.filename.includes('components/')) {
+                console.warn('Component loading error:', e.message);
+                // Could implement fallback content here
+            }
+        });
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
