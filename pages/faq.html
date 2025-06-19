@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - Parent Powered ABA</title>
+    <meta name="description" content="Find answers to common questions about Parent Powered ABA courses, consultations, and family-centered autism support services.">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicons/site.webmanifest">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    
+    <style>
+        .faq-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+        .faq-category h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .faq-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .faq-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .faq-question {
+            background: var(--light-bg);
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: background-color 0.3s ease;
+        }
+        .faq-question:hover {
+            background: #f0f0f0;
+        }
+        .faq-question.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .faq-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        .faq-question.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 1.25rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-answer.active {
+            padding: 1.25rem;
+            max-height: 500px;
+        }
+        .faq-answer p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .faq-answer ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+        .faq-search {
+            margin-bottom: 2rem;
+        }
+        .faq-search input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .faq-search input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .contact-cta {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .contact-cta h3 {
+            margin-bottom: 1rem;
+        }
+        .contact-cta .btn {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Empty header to be filled by JavaScript -->
+    <header></header>
+
+    <!-- Page Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about our ABA training courses and family support services.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="about">
+        <div class="container">
+            <div class="faq-content">
+                <!-- Search Bar -->
+                <div class="faq-search">
+                    <input type="text" id="faq-search-input" placeholder="Search for answers..." aria-label="Search FAQ">
+                </div>
+
+                <!-- Getting Started Category -->
+                <div class="faq-category" data-category="getting-started">
+                    <h2>Getting Started</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>What is Parent Powered ABA and how is it different from traditional ABA therapy?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Parent Powered ABA is a family-centered approach that teaches parents professional ABA strategies to use at home. Unlike traditional ABA therapy where therapists work directly with your child for hours each week, we empower parents with the same tools and techniques professionals use.</p>
+                            <p>This approach:</p>
+                            <ul>
+                                <li>Reduces dependence on outside services</li>
+                                <li>Strengthens family bonds</li>
+                                <li>Provides more cost-effective support</li>
+                                <li>Gives parents confidence and skills for long-term success</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>Do I need any prior experience with ABA to take your courses?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No prior experience is required! Our courses are designed for parents with no background in ABA therapy. We start with fundamental concepts and build up to more advanced strategies, ensuring every parent can follow along and succeed.</p>
+                            <p>Our curriculum is beginner-friendly while still providing comprehensive, professional-level training.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>Is this suitable for children of all ages and autism levels?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our strategies are adaptable for children across the autism spectrum and various age groups. The ABA principles we teach are foundational and can be modified based on your child's specific needs, abilities, and developmental level.</p>
+                            <p>During consultations, we help you customize the approaches for your unique family situation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Courses Category -->
+                <div class="faq-category" data-category="courses">
+                    <h2>Course Information</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>What's included in the 6-unit ABA course curriculum?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our comprehensive curriculum covers:</p>
+                            <ul>
+                                <li><strong>Unit 1:</strong> About ABA and Autism</li>
+                                <li><strong>Unit 2:</strong> Functional Communication Training</li>
+                                <li><strong>Unit 3:</strong> Reinforcement Strategies and Motivation</li>
+                                <li><strong>Unit 4:</strong> Teaching Communication and Social Skills</li>
+                                <li><strong>Unit 5:</strong> Managing Challenging Behaviors</li>
+                                <li><strong>Unit 6:</strong> Independence and Lifelong Skills</li>
+                            </ul>
+                            <p>Each unit includes video lessons, practical exercises, downloadable resources, and real-world examples.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>How long does it take to complete the course?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The course is self-paced, allowing you to learn at your own speed. Most parents complete the full curriculum in 6-8 weeks, spending about 2-3 hours per week on course materials and practice.</p>
+                            <p>You have lifetime access to all course materials, so you can revisit content anytime and progress at your own pace.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>Do I get a certificate upon completion?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! Upon successful completion of all six units and assessments, you'll receive a Certificate of Completion from Parent Powered ABA, demonstrating your knowledge of fundamental ABA strategies for family use.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support & Consultations Category -->
+                <div class="faq-category" data-category="support">
+                    <h2>Support & Consultations</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>What can I expect from a personalized consultation?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our one-on-one consultations provide personalized guidance tailored to your family's specific needs. During a consultation, we:</p>
+                            <ul>
+                                <li>Assess your current situation and challenges</li>
+                                <li>Develop customized strategies for your child</li>
+                                <li>Create action plans for immediate implementation</li>
+                                <li>Provide ongoing support and follow-up recommendations</li>
+                            </ul>
+                            <p>Sessions typically last 60-90 minutes and can be conducted via video call.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>How do the monthly support meetings work?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our virtual monthly support meetings bring together parents from our community to:</p>
+                            <ul>
+                                <li>Share experiences and challenges</li>
+                                <li>Learn from each other's successes</li>
+                                <li>Get expert guidance on common issues</li>
+                                <li>Build connections with other families</li>
+                            </ul>
+                            <p>Meetings are held via video conference and typically last 60 minutes. All participants respect confidentiality and create a supportive environment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical & Practical Category -->
+                <div class="faq-category" data-category="technical">
+                    <h2>Technical & Practical Information</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>What technology do I need to access the courses?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You'll need:</p>
+                            <ul>
+                                <li>A reliable internet connection</li>
+                                <li>A computer, tablet, or smartphone</li>
+                                <li>A web browser (Chrome, Firefox, Safari, or Edge)</li>
+                                <li>For consultations: video calling capability (we'll provide meeting links)</li>
+                            </ul>
+                            <p>Our platform is mobile-friendly, so you can learn on any device.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>Can I access course materials offline?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>While the video content requires an internet connection, many of our resources including worksheets, guides, and reference materials are available for download so you can access them offline.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Policies Category -->
+                <div class="faq-category" data-category="policies">
+                    <h2>Policies & Payments</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>What is your refund policy?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Due to the immediate access provided to our digital course materials, course fees are non-refundable once access has been granted. For consultations, we offer refunds if cancelled more than 24 hours in advance.</p>
+                            <p>We're confident in the value of our services and are committed to your success. If you have concerns, please contact us to discuss your situation.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>Do you offer payment plans?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We understand that families have different financial situations. Please contact us directly to discuss payment options that might be available for our courses and services.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Considerations Category -->
+                <div class="faq-category" data-category="professional">
+                    <h2>Professional Considerations</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>Should I still work with other professionals while taking your course?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! Our services are educational and designed to complement, not replace, professional medical care and therapy services. We encourage parents to work with their child's healthcare team, including pediatricians, behavioral therapists, and other specialists.</p>
+                            <p>Our training helps you be a more informed and effective advocate for your child across all settings.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+                            <span>Are your instructors qualified ABA professionals?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! Our founder, Marieanne Paniagua, is a Board Certified Behavioral Technician with hands-on experience in ABA therapy settings. Our curriculum is developed by professionals with real-world experience in Applied Behavior Analysis.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact CTA -->
+                <div class="contact-cta">
+                    <h3>Still Have Questions?</h3>
+                    <p>We're here to help! If you can't find the answer you're looking for, don't hesitate to reach out to our team.</p>
+                    <a href="contact.html" class="btn btn-outline" style="background: white; color: var(--primary-color);">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empty footer to be filled by JavaScript -->
+    <footer id="contact"></footer>
+
+    <!-- JavaScript for FAQ functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ Toggle functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            const searchInput = document.getElementById('faq-search-input');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all other FAQs
+                    faqQuestions.forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                        q.setAttribute('aria-expanded', 'false');
+                    });
+                    
+                    // Toggle current FAQ
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.classList.add('active');
+                        this.setAttribute('aria-expanded', 'true');
+                    }
+                });
+                
+                // Keyboard accessibility
+                question.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const faqItems = document.querySelectorAll('.faq-item');
+                const categories = document.querySelectorAll('.faq-category');
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide categories based on visible items
+                categories.forEach(category => {
+                    const visibleItems = category.querySelectorAll('.faq-item[style*="block"], .faq-item:not([style*="none"])');
+                    const hasVisibleItems = Array.from(category.querySelectorAll('.faq-item')).some(item => 
+                        item.style.display !== 'none'
+                    );
+                    
+                    if (searchTerm === '' || hasVisibleItems) {
+                        category.style.display = 'block';
+                    } else {
+                        category.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- JavaScript Files -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

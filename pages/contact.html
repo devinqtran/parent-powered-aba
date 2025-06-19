@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Parent Powered ABA</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicons/site.webmanifest">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .contact-method {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .contact-method h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        .office-hours {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .office-hours h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Empty header to be filled by JavaScript -->
+    <header></header>
+
+    <!-- Page Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We're here to support your family's ABA journey. Reach out to us for questions, consultations, or just to connect.</p>
+        </div>
+    </section>
+
+    <!-- Contact Methods Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <h3>📞 Phone</h3>
+                    <p><strong><a href="tel:+18014730135">(801) 473-0135</a></strong></p>
+                    <p>Call us during business hours for immediate assistance</p>
+                </div>
+                
+                <div class="contact-method">
+                    <h3>📧 Email</h3>
+                    <p><strong><a href="mailto:parentpoweredaba@gmail.com">parentpoweredaba@gmail.com</a></strong></p>
+                    <p>We typically respond within 24 hours</p>
+                </div>
+                
+                <div class="contact-method">
+                    <h3>📅 Schedule Consultation</h3>
+                    <p><a href="https://calendly.com/parentpoweredaba/family-consultation" class="btn" target="_blank">Book Now</a></p>
+                    <p>One-on-one personalized guidance</p>
+                </div>
+            </div>
+
+            <div class="office-hours">
+                <h3>Office Hours & Response Times</h3>
+                <p><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (MST)</p>
+                <p><strong>Email Response:</strong> Within 24 hours during business days</p>
+                <p><strong>Phone Response:</strong> Immediate during business hours, voicemail returned within 24 hours</p>
+                <p><strong>Emergency Support:</strong> For urgent behavioral concerns, please contact your local crisis support services or call 988 (Suicide & Crisis Lifeline)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="about" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title">Send Us a Message</h2>
+            
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="inquiryType">Type of Inquiry</label>
+                    <select id="inquiryType" name="inquiryType">
+                        <option value="">Please select...</option>
+                        <option value="course">Course Information</option>
+                        <option value="consultation">Schedule Consultation</option>
+                        <option value="support">Support Group</option>
+                        <option value="products">Products & Resources</option>
+                        <option value="technical">Technical Support</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="childAge">Child's Age (if applicable)</label>
+                    <input type="text" id="childAge" name="childAge" placeholder="e.g., 5 years old">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" placeholder="Please describe how we can help you..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="newsletter" value="yes">
+                        I would like to receive helpful ABA tips and updates via email
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn">Send Message</button>
+                
+                <p style="margin-top: 20px; font-size: 14px; color: #666;">
+                    By submitting this form, you agree to our <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-of-service.html">Terms of Service</a>.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Information Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">What to Expect</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Intake Process</h3>
+                    <p>When you reach out to Parent Powered ABA, here's what you can expect:</p>
+                    <ul>
+                        <li><strong>Initial Contact:</strong> We'll respond to your inquiry within 24 hours</li>
+                        <li><strong>Brief Assessment:</strong> Understanding your family's unique needs and goals</li>
+                        <li><strong>Service Matching:</strong> Recommending the best resources and services for your situation</li>
+                        <li><strong>Next Steps:</strong> Clear guidance on how to move forward with your chosen services</li>
+                    </ul>
+                    
+                    <h3>Insurance & Payment</h3>
+                    <p>We're committed to making ABA support accessible:</p>
+                    <ul>
+                        <li>Some consultation services may be covered by insurance (we'll help verify)</li>
+                        <li>Flexible payment options available for courses and products</li>
+                        <li>Sliding scale consultations available based on need</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empty footer to be filled by JavaScript -->
+    <footer></footer>
+
+    <!-- JavaScript Files -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
