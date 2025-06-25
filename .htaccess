@@ -12,6 +12,11 @@ RewriteRule ^(.*)$ https://parentpoweredaba.com/$1 [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
 RewriteRule ^(.*?)index\.html$ https://parentpoweredaba.com/$1 [R=301,L]
 
+# ===== DIRECTORY ACCESS CONTROL =====
+
+# Prevent direct access to component files
+RewriteRule ^components/ - [F,L]
+
 # ===== CLEAN URL HANDLING =====
 
 # Remove .html extension from URLs (301 redirect)
@@ -90,6 +95,12 @@ RewriteRule ^blog/([^/]+)/?$ /blog/$1.html [L]
 
 # Block access to backup and temporary files
 <FilesMatch "\.(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Additional security: Block access to common development files
+<FilesMatch "\.(md|json|yml|yaml|txt|log)$">
     Order allow,deny
     Deny from all
 </FilesMatch>

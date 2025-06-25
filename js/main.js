@@ -3,31 +3,27 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded. Current page:', window.location.pathname);
 
-    // Determine the base path and directory context
+    // Simplified directory context - now all pages are at root level with clean URLs
     function getDirectoryContext() {
         const path = window.location.pathname;
-        if (path.includes('/blog/posts/')) {
+        
+        // Clean URL structure - all pages are served from root
+        if (path.startsWith('/blog/') && path !== '/blog') {
             return { 
                 context: 'blog-post', 
-                basePath: '../../../',
-                isInSubDirectory: true 
+                basePath: '/',
+                isInSubDirectory: false 
             };
-        } else if (path.includes('/blog/')) {
+        } else if (path === '/blog') {
             return { 
                 context: 'blog', 
-                basePath: '../',
-                isInSubDirectory: true 
-            };
-        } else if (path.includes('/pages/')) {
-            return { 
-                context: 'pages', 
-                basePath: '../',
-                isInSubDirectory: true 
+                basePath: '/',
+                isInSubDirectory: false 
             };
         } else {
             return { 
                 context: 'root', 
-                basePath: './',
+                basePath: '/',
                 isInSubDirectory: false 
             };
         }
@@ -39,9 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load header component
     const headerElement = document.querySelector('header');
     if (headerElement) {
-        const headerPath = directoryInfo.isInSubDirectory 
-            ? directoryInfo.basePath + 'components/header.html'
-            : 'components/header.html';
+        const headerPath = '/components/header.html';
         console.log('Header loading: path =', headerPath);
         
         fetch(headerPath)
@@ -52,82 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 headerElement.innerHTML = data;
                 console.log('Header HTML loaded.');
-
-                if (directoryInfo.isInSubDirectory) {
-                    console.log(`Fixing paths in HEADER for ${directoryInfo.context} context.`);
-                    
-                    // Fix image paths
-                    headerElement.querySelectorAll('img[src^="assets/"]').forEach(img => {
-                        const currentSrc = img.getAttribute('src');
-                        if (currentSrc && !currentSrc.startsWith('../')) {
-                            img.src = directoryInfo.basePath + currentSrc;
-                        }
-                    });
-                    
-                    // Fix <a> href paths
-                    headerElement.querySelectorAll('a[href]').forEach(link => {
-                        const originalHref = link.getAttribute('href');
-                        console.log(`Header Link Processing: Original href = "${originalHref}"`);
-
-                        // Skip modification for special links
-                        if (!originalHref || 
-                            originalHref.startsWith('#') || 
-                            originalHref.startsWith('http') || 
-                            originalHref.startsWith('mailto:') || 
-                            originalHref.startsWith('tel:') || 
-                            originalHref.startsWith('/') || 
-                            originalHref.startsWith('../')
-                        ) {
-                            console.log(`  -> Skipping modification for: "${originalHref}" (special link or already relative)`);
-                        } else {
-                            console.log(`  -> Eligible for modification: "${originalHref}"`);
-                            
-                            if (originalHref === 'index.html') {
-                                link.setAttribute('href', directoryInfo.basePath + originalHref);
-                                console.log(`    -> Rule (index.html): New href = "${link.getAttribute('href')}"`);
-                            } else if (originalHref.startsWith('pages/')) {
-                                // Handle subpage to subpage navigation
-                                if (directoryInfo.context === 'pages') {
-                                    link.setAttribute('href', originalHref.substring('pages/'.length));
-                                } else {
-                                    // From blog to pages
-                                    link.setAttribute('href', directoryInfo.basePath + originalHref);
-                                }
-                                console.log(`    -> Rule (pages/): New href = "${link.getAttribute('href')}"`);
-                            } else if (originalHref.startsWith('blog/') || originalHref === 'blog.html') {
-                                // Handle blog navigation
-                                if (directoryInfo.context === 'blog' || directoryInfo.context === 'blog-post') {
-                                    // Already in blog context
-                                    if (originalHref === 'blog.html') {
-                                        link.setAttribute('href', directoryInfo.context === 'blog-post' ? '../blog.html' : 'blog.html');
-                                    } else {
-                                        link.setAttribute('href', directoryInfo.basePath + originalHref);
-                                    }
-                                } else {
-                                    // From other contexts to blog
-                                    link.setAttribute('href', directoryInfo.basePath + originalHref);
-                                }
-                                console.log(`    -> Rule (blog): New href = "${link.getAttribute('href')}"`);
-                            } else if (originalHref.startsWith('#')) {
-                                // Handle anchor links - no modification needed
-                                console.log(`    -> Rule (anchor): No change needed for "${originalHref}"`);
-                            } else {
-                                // Other relative links - typically these should get the base path prepended
-                                if (directoryInfo.context === 'blog-post' && !originalHref.includes('.html')) {
-                                    // Likely a relative page link, prepend base path
-                                    link.setAttribute('href', directoryInfo.basePath + originalHref);
-                                    console.log(`    -> Rule (other relative with base): New href = "${link.getAttribute('href')}"`);
-                                } else {
-                                    console.log(`    -> Rule (other relative): No change needed for "${originalHref}"`);
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    console.log('In root directory, so no path fixing for header content.');
-                }
                 
-                initializeNavigation(); // Call after paths are fixed
+                // Since components should now use absolute paths, minimal path fixing needed
+                console.log('Header uses absolute paths, minimal path fixing required.');
+                
+                initializeNavigation(); // Call after header is loaded
             })
             .catch(error => console.warn('Could not load header:', error));
     } else {
@@ -137,9 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load newsletter component
     const newsletterElement = document.querySelector('.newsletter-component');
     if (newsletterElement) {
-        const newsletterPath = directoryInfo.isInSubDirectory 
-            ? directoryInfo.basePath + 'components/newsletter.html'
-            : 'components/newsletter.html';
+        const newsletterPath = '/components/newsletter.html';
         console.log('Newsletter loading: path =', newsletterPath);
         
         fetch(newsletterPath)
@@ -157,9 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load footer component
     const footerElement = document.querySelector('footer');
     if (footerElement) {
-        const footerPath = directoryInfo.isInSubDirectory 
-            ? directoryInfo.basePath + 'components/footer.html'
-            : 'components/footer.html';
+        const footerPath = '/components/footer.html';
         
         fetch(footerPath)
             .then(response => {
@@ -168,14 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 footerElement.innerHTML = data;
-                if (directoryInfo.isInSubDirectory) {
-                    footerElement.querySelectorAll('img[src^="assets/"]').forEach(img => {
-                        const currentSrc = img.getAttribute('src');
-                        if (currentSrc && !currentSrc.startsWith('../')) {
-                            img.src = directoryInfo.basePath + currentSrc;
-                        }
-                    });
-                }
+                console.log('Footer HTML loaded.');
+                // Footer should use absolute paths, no path fixing needed
             })
             .catch(error => console.warn('Could not load footer:', error));
     }
@@ -199,63 +112,53 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Add active class to current navigation item based on URL
-        const currentUrl = new URL(window.location.href);
+        // Add active class to current navigation item based on clean URLs
+        const currentPath = window.location.pathname;
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.classList.remove('active'); 
-            let linkUrl;
-            try {
-                linkUrl = new URL(link.href); 
-            } catch (e) {
-                return; 
-            }
-
-            if (linkUrl.origin !== currentUrl.origin) {
-                return; // Skip external links
+            
+            const linkHref = link.getAttribute('href');
+            
+            // Skip external links, anchors, and special links
+            if (!linkHref || 
+                linkHref.startsWith('#') || 
+                linkHref.startsWith('http') || 
+                linkHref.startsWith('mailto:') || 
+                linkHref.startsWith('tel:')) {
+                return;
             }
             
-            const rawLinkHref = link.getAttribute('href');
-
             // Check for home page
-            if ((currentUrl.pathname === '/' || currentUrl.pathname === '/index.html')) {
-                if (rawLinkHref === 'index.html' || rawLinkHref === '../index.html' || rawLinkHref === '../../../index.html' || rawLinkHref === './index.html') {
+            if (currentPath === '/' || currentPath === '/index.html') {
+                if (linkHref === '/' || linkHref === '/index.html') {
                     link.classList.add('active');
-                    return;
                 }
+                return;
             }
             
-            // Check for blog pages
-            if (currentUrl.pathname.includes('/blog/')) {
-                if (rawLinkHref === 'blog.html' || rawLinkHref === '../blog.html' || rawLinkHref === '../../../blog.html') {
+            // Check for blog main page
+            if (currentPath === '/blog') {
+                if (linkHref === '/blog') {
                     link.classList.add('active');
-                    return;
                 }
+                return;
             }
             
-            // Check for other pages
-            const currentPageFileName = currentUrl.pathname.substring(currentUrl.pathname.lastIndexOf('/') + 1) || 'index.html';
-            let linkTargetFileName = rawLinkHref.substring(rawLinkHref.lastIndexOf('/') + 1);
-            
-            if (rawLinkHref.startsWith('../')) {
-                if (rawLinkHref.includes('index.html')) {
-                    linkTargetFileName = 'index.html';
-                } else if (rawLinkHref.includes('blog.html')) {
-                    linkTargetFileName = 'blog.html';
+            // Check for blog posts
+            if (currentPath.startsWith('/blog/') && currentPath !== '/blog') {
+                if (linkHref === '/blog') {
+                    link.classList.add('active');
                 }
-            } else if (!rawLinkHref.includes('/')) {
-                // linkTargetFileName is already correct
+                return;
             }
-
-            if (currentPageFileName === linkTargetFileName && currentPageFileName !== 'index.html') {
+            
+            // Check for other pages with clean URLs
+            if (currentPath === linkHref) {
                 link.classList.add('active');
-            } else if (currentPageFileName === 'index.html' && linkTargetFileName === 'index.html') {
-                if (rawLinkHref === 'index.html' || rawLinkHref === '../index.html' || rawLinkHref === '../../../index.html' || rawLinkHref === './index.html') {
-                    link.classList.add('active');
-                }
             }
         });
         
-        console.log('Active link highlighting based on URL complete.');
+        console.log('Active link highlighting based on clean URLs complete.');
         updateActiveNavLink();
     }
     
@@ -289,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize service card click functionality with double-click prevention
+    // Initialize service card click functionality
     function initializeServiceCards() {
         console.log('Initializing service card click functionality...');
 
@@ -299,14 +202,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Define the links for each service card based on their heading text
+        // Updated service card links to use clean URLs
         const serviceCardLinks = {
-            'Complete ABA Parenting Course Access': 'pages/course.html',
+            'Complete ABA Parenting Course Access': '/course',
             'ABA Based Product Line': 'https://www.etsy.com/shop/ParentPoweredABA',
-            'Personalized ABA Consultations': 'pages/services.html#consultation',
+            'Personalized ABA Consultations': '/services#consultation',
             'Our Youtube Channel': 'https://youtube.com/@parentpoweredaba',
-            'ABA Blog & Resources': 'pages/blog.html',
-            'Monthly Support Meetings': 'pages/services.html#support-meetings'
+            'ABA Blog & Resources': '/blog',
+            'Monthly Support Meetings': '/services#support-meetings'
         };
 
         // Get all service cards
@@ -344,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         this.style.boxShadow = '';
                     });
                 
-                    // FIXED: Add click functionality with throttling
+                    // Add click functionality with throttling
                     let isProcessing = false;
                     
                     card.addEventListener('click', function(e) {
@@ -372,16 +275,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             // Open external links in new tab
                             window.open(targetLink, '_blank', 'noopener,noreferrer');
                         } else {
-                            // Handle internal navigation with proper path resolution
-                            let finalLink = targetLink;
-                            if (directoryInfo.isInSubDirectory && !targetLink.startsWith('../')) {
-                                finalLink = directoryInfo.basePath + targetLink;
-                            }
-                            window.location.href = finalLink;
+                            console.log('Navigating to internal clean URL:', targetLink);
+                            // Navigate to clean URL
+                            window.location.href = targetLink;
                         }
                     });
 
-                    // Add accessibility attributes (if not already present)
+                    // Add accessibility attributes
                     if (!card.getAttribute('role')) {
                         card.setAttribute('role', 'button');
                     }
@@ -404,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Mark this card as initialized
                     card.setAttribute('data-click-initialized', 'true');
-                    console.log(`Service card "${headingText}" made clickable with link: ${targetLink}`);
+                    console.log(`Service card "${headingText}" made clickable with clean URL: ${targetLink}`);
                 }
             }
         });
