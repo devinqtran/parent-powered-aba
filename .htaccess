@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Force HTTPS (if not already implemented)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.parentpoweredaba\.com [NC]
+RewriteRule ^(.*)$ https://parentpoweredaba.com/$1 [R=301,L]
+
+# Redirect index.html to root (both with and without trailing slash)
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^(.*?)index\.html$ https://parentpoweredaba.com/$1 [R=301,L]
+
+# Optional: Redirect trailing slash to non-trailing slash for consistency
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)/$ https://parentpoweredaba.com/$1 [R=301,L]
